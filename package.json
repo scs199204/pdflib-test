@@ -1,0 +1,25 @@
+{
+  "name": "pdflib_test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode dev-build",
+    "preview": "vite preview",
+    "deploy": "kintone-customize-uploader --base-url \"%KINTONE_BASE_URL%\" --username \"%KINTONE_USERNAME%\" --password \"%KINTONE_PASSWORD%\" dest/customize-manifest.json"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "pdf-lib": "^1.17.1"
+  }
+}
