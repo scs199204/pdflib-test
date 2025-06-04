@@ -13,7 +13,8 @@ import { getFileData, getPdfFileKey, drawTextPdfFunc, calcOffset, subtotalAdd, i
   async function pdfCreate(record) {
     const params = sdpParam.pdfLib; //パラメタ(sdpParam_pdfLib.js)
 
-    const templatePdfFileKey = await getPdfFileKey(params.app.pdf.id.value, params.app.pdf.recordId.value, params.app.pdf.attachment.value); //ひな形pdfのfileKey取得
+    const app = params.app;
+    const templatePdfFileKey = await getPdfFileKey(app.pdf.id.value, app.pdf.recordId.value, app.pdf.attachment.value); //ひな形pdfのfileKey取得
     if (!templatePdfFileKey) {
       alert('請求書雛形PDFが設定されていません。');
       return;
@@ -28,11 +29,11 @@ import { getFileData, getPdfFileKey, drawTextPdfFunc, calcOffset, subtotalAdd, i
       let customFont;
       try {
         //githubPagesUrlがある時は、対象のurlからフォントファイル取得、ない場合はkintoneアプリのレコードから取得
-        if (params.app.font.hasOwnProperty('url')) {
-          const fontUrl = params.app.font.url.value; //GitHub Pagesのurl
+        if (app.font.hasOwnProperty('url')) {
+          const fontUrl = app.font.url.value; //GitHub Pagesのurl
           fontBytes = await getFontDataFromGitHubPages(fontUrl); // フォントファイルをGitHub Pagesから取得
         } else {
-          const fontFileKey = await getPdfFileKey(params.app.font.id.value, params.app.font.recordId.value, params.app.font.attachment.value); //フォントファイルのfileKey取得
+          const fontFileKey = await getPdfFileKey(app.font.id.value, app.font.recordId.value, app.font.attachment.value); //フォントファイルのfileKey取得
           if (!fontFileKey) {
             throw new Error('フォントが設定されていません。');
           }
